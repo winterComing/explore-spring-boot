@@ -1,4 +1,4 @@
-package com.dengh.exploreweb;
+package com.dengh.explore.web;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
