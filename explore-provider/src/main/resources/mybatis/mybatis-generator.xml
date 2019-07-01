@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+    <!-- 引入外部资源文件，方便之后使用${XX.XX} -->
+    <properties resource="../datasource.properties" />
+
+    <!-- targetRuntime：默认值MyBatis3，这里用MyBatis3Simple表示不需要生成example查询相关的内容
+         flat表示一张表对应一个实体类 -->
+    <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <!-- 引入插件，常用的有：SerializablePlugin，OraclePaginationPlugin, ModelFieldCustomizePlugin等 -->
+        <!--<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <property name="mappers" value="com.dudu.util.MyMapper" />
+            caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true
+            <property name="caseSensitive" value="true"/>
+        </plugin>-->
+
+        <!-- <plugin type="com.lz.cts.plugin.OraclePaginationPlugin"></plugin> -->
+        <plugin type="com.lz.cts.plugin.ModelFieldCustomizePlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+
+        <!-- 阻止生成自动注释,可配置properties: suppressDate, dateFormat, suppressAllComments, addRemarkComments -->
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
+                        connectionURL="${spring.datasource.url}"
+                        userId="${spring.datasource.username}"
+                        password="${spring.datasource.password}">
+        </jdbcConnection>
+
+        <!--对数据库字段类型和Java数据类型进行转换：默认是false，
+            设置为true表示强制将Decimal,Numeric转换为BigDecimal，
+            false表示根据需要转换为long,int,short -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--生成Model类存放位置，trimStrings表示是否对数据库查询结果做trim操作
+            enableSubPackages 为false表示直接使用targerPackage，为true表示根据catalog和schema生成子包，默认是false -->
+        <javaModelGenerator  targetPackage="com.unicom.springbootdemo.mybatis" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--生成映射文件mapper.xml存放位置-->
+        <sqlMapGenerator targetPackage="com.unicom.springbootdemo.mybatis" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- 生成Mapper接口的存放位置，type为XMLMAPPER，表示接口所有方法定义在xml文件中，
+             type为ANNOTATEDMAPPER，表示接口的所有方法实现在注解中，无xml文件，-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.unicom.springbootdemo.mybatis" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- 生成表对应的实体类和mapper.xml文件，只有这样定义的表才会生成相应的文件，
+            enable*：表示是否生成对应的方法，selectByExampleQueryId：DBA跟踪工具会用到，
+            modelType：可以覆盖context上的设置
+            enableCountByExample="false" enableUpdateByExample="false"
+            enableDeleteByExample="false" enableSelectByExample="false"
+            selectByExampleQueryId="false"-->
+        <!-- 可以指定generatorKey，定义主键自动生成策略，
+            有自增长：<generatedKey column="id" sqlStatement="Mysql"/>
+            和序列：<generatedKey column="id" sqlStatement="select SEQ_ID.nextval from dual"/>-->
+        <!--<table tableName="book" domainObjectName="Book">-->
+
+        <!--</table>-->
+
+        <table tableName="course" domainObjectName="Course">
+            <generatedKey column="id" sqlStatement="Mysql"/>
+        </table>
+    </context>
+</generatorConfiguration>
