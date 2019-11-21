@@ -1,0 +1,12 @@
+server:
+  port: 8090
+  tomcat:
+    max-threads: 500
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+    health:
+      show-details: always
