@@ -1,5 +1,8 @@
 package com.dengh.explore.provider.constant;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * @author dengH
  * @title: DbConstants
@@ -12,6 +15,5 @@ public class DbConstants {
     public static final String USER_NAME = "root";
 
     public static final String PASSWORD = "1804052";
-
 
 }

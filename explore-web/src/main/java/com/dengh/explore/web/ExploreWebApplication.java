@@ -24,7 +24,7 @@ public class ExploreWebApplication {
     public static void main(String[] args) {
 
         ConfigurableApplicationContext run = SpringApplication.run(ExploreWebApplication.class, args);
-        TomcatWebServerFactoryCustomizer bean = run.getBean(TomcatWebServerFactoryCustomizer.class);
+        //TomcatWebServerFactoryCustomizer bean = run.getBean(TomcatWebServerFactoryCustomizer.class);
         //System.out.println(bean.);
     }
 

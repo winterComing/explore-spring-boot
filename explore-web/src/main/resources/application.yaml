@@ -10,3 +10,5 @@ management:
         include: '*'
     health:
       show-details: always
+  server:
+    port: 12302

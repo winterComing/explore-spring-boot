@@ -1,5 +1,6 @@
-package com.dengh.explore.provider.nio;
+package com.dengh.explore.provider.beanFactory;
 
+import com.dengh.explore.provider.beanFactory.MyBeanFacotryPostProcessor;
 import org.springframework.context.annotation.Bean;
 
 import java.util.HashMap;
@@ -18,8 +19,8 @@ public class Configuration {
         return new HashMap();
     }
 
-    @Bean
-    public MyBeanFacotryPostProcessor myBeanFacotryPostProcessor(){
-        return new MyBeanFacotryPostProcessor();
-    }
+    //@Bean
+    //public MyBeanFacotryPostProcessor myBeanFacotryPostProcessor(){
+    //    return new MyBeanFacotryPostProcessor();
+   // }
 }

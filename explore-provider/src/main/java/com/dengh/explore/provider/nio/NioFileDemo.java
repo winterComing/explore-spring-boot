@@ -1,8 +1,9 @@
 package com.dengh.explore.provider.nio;
 
+import com.dengh.explore.provider.beanFactory.Configuration;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.io.InputStream;
+import java.net.Socket;
 import java.nio.ByteBuffer;
 
 
@@ -13,7 +14,6 @@ public class NioFileDemo {
         //ThreadPoolExecutor
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Configuration.class);
         context.getBean("auto");
-
 
     }
 

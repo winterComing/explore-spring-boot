@@ -5,13 +5,13 @@
 <generatorConfiguration>
 
     <!-- 引入外部资源文件，方便之后使用${XX.XX} -->
-    <properties resource="../datasource.properties" />
+    <properties resource="application.properties" />
 
     <!-- targetRuntime：默认值MyBatis3，这里用MyBatis3Simple表示不需要生成example查询相关的内容
          flat表示一张表对应一个实体类 -->
     <context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
 
-        <!-- 引入插件，常用的有：SerializablePlugin，OraclePaginationPlugin, ModelFieldCustomizePlugin等 -->
+        <!-- 引入插件，常用的有：SerializablePlugin，序列化插件，OraclePaginationPlugin,分页插件，ModelFieldCustomizePlugin，注释插件 -->
         <!--<plugin type="tk.mybatis.mapper.generator.MapperPlugin">
             <property name="mappers" value="com.dudu.util.MyMapper" />
             caseSensitive默认false，当数据库表名区分大小写时，可以将该属性设置为true
@@ -19,7 +19,7 @@
         </plugin>-->
 
         <!-- <plugin type="com.lz.cts.plugin.OraclePaginationPlugin"></plugin> -->
-        <plugin type="com.lz.cts.plugin.ModelFieldCustomizePlugin"></plugin>
+       <!-- <plugin type="com.lz.cts.plugin.ModelFieldCustomizePlugin"></plugin>-->
         <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
 
         <!-- 阻止生成自动注释,可配置properties: suppressDate, dateFormat, suppressAllComments, addRemarkComments -->
@@ -29,10 +29,10 @@
         </commentGenerator>
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="${spring.datasource.driver-class-name}"
-                        connectionURL="${spring.datasource.url}"
-                        userId="${spring.datasource.username}"
-                        password="${spring.datasource.password}">
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://192.168.99.100:12306/docker"
+                        userId="root"
+                        password="123456">
         </jdbcConnection>
 
         <!--对数据库字段类型和Java数据类型进行转换：默认是false，
@@ -44,19 +44,19 @@
 
         <!--生成Model类存放位置，trimStrings表示是否对数据库查询结果做trim操作
             enableSubPackages 为false表示直接使用targerPackage，为true表示根据catalog和schema生成子包，默认是false -->
-        <javaModelGenerator  targetPackage="com.unicom.springbootdemo.mybatis" targetProject="src/main/java">
+        <javaModelGenerator  targetPackage="com.dengh.explore.provider.datasource" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!--生成映射文件mapper.xml存放位置-->
-        <sqlMapGenerator targetPackage="com.unicom.springbootdemo.mybatis" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="com.dengh.explore.provider.datasource" targetProject="src/main/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 生成Mapper接口的存放位置，type为XMLMAPPER，表示接口所有方法定义在xml文件中，
              type为ANNOTATEDMAPPER，表示接口的所有方法实现在注解中，无xml文件，-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.unicom.springbootdemo.mybatis" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.dengh.explore.provider.datasource" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
@@ -73,8 +73,8 @@
 
         <!--</table>-->
 
-        <table tableName="course" domainObjectName="Course">
-            <generatedKey column="id" sqlStatement="Mysql"/>
+        <table tableName="actor" domainObjectName="Actor">
+            <!--<generatedKey column="id" sqlStatement="Mysql"/>-->
         </table>
     </context>
 </generatorConfiguration>
