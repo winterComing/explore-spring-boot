@@ -29,10 +29,17 @@ import static org.junit.Assert.*;
 @SpringBootTest
 public class ControllerDemoTest {
 
+    @Autowired ControllerDemo controllerDemo;
+
     @Autowired
     private WebApplicationContext wac;
 
     private MockMvc mvc;
+
+    @Test
+    public void loginTest(){
+        controllerDemo.test123(new LoginUser());
+    }
 
     @Before
     public void before(){
